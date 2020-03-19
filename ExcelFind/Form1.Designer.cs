@@ -42,7 +42,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_newChar = new System.Windows.Forms.TextBox();
             this.lab_progress = new System.Windows.Forms.Label();
-            this.btn_stop = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -168,20 +167,9 @@
             this.lab_progress.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lab_progress.Location = new System.Drawing.Point(62, 246);
             this.lab_progress.Name = "lab_progress";
-            this.lab_progress.Size = new System.Drawing.Size(133, 20);
+            this.lab_progress.Size = new System.Drawing.Size(121, 20);
             this.lab_progress.TabIndex = 11;
-            this.lab_progress.Text = "当前进度：100/100";
-            // 
-            // btn_stop
-            // 
-            this.btn_stop.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btn_stop.Location = new System.Drawing.Point(446, 140);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(138, 30);
-            this.btn_stop.TabIndex = 8;
-            this.btn_stop.Text = "停止查找";
-            this.btn_stop.UseVisualStyleBackColor = true;
-            this.btn_stop.Click += new System.EventHandler(this.Btn_find_Click);
+            this.lab_progress.Text = "当前进度：未开始";
             // 
             // label5
             // 
@@ -195,9 +183,9 @@
             // 
             // Form1
             // 
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(878, 589);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btn_stop);
             this.Controls.Add(this.lab_progress);
             this.Controls.Add(this.textBox_newChar);
             this.Controls.Add(this.label4);
@@ -212,7 +200,10 @@
             this.Controls.Add(this.textBox_target);
             this.Controls.Add(this.lab_url);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Form1";
+            this.Text = "Excel查询工具";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -236,7 +227,6 @@
         private System.Windows.Forms.TextBox textBox_newChar;
         private System.Windows.Forms.Label lab_pro;
         private System.Windows.Forms.Label lab_progress;
-        private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.Label label5;
     }
 }

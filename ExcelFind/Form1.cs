@@ -15,6 +15,7 @@ namespace ExcelFind
 {
     public partial class Form1 : Form
     {
+        private Thread curThread;
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +24,8 @@ namespace ExcelFind
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SetProgress("");
+            StopProgress();
+            listBoxMsg.Items.Clear();
         }
 
         private void Btn_selectUrl_Click(object sender, EventArgs e)
@@ -42,7 +44,8 @@ namespace ExcelFind
             string target = textBox_target.Text;
             string type = textBox_type.Text;
 
-            ThreadStart childref = new ThreadStart(()=> {
+            ThreadStart childref = new ThreadStart(() =>
+            {
                 ExcelFindData data = new ExcelFindData();
                 ExcelFind.Find(path, type, target, data, this);
                 if (data.infoList.Count > 0)
@@ -57,10 +60,9 @@ namespace ExcelFind
                 {
                     AddBoxMsg($"没有找到和‘{target}’类似的内容");
                 }
-                Stop();
+                StopProgress();
             });
-            Thread childThread = new Thread(childref);
-            childThread.Start();
+            StartThread(childref);
         }
         private void AddBoxMsg(string text)
         {
@@ -76,7 +78,9 @@ namespace ExcelFind
             string oldChar = textBox_target.Text;
             string type = textBox_type.Text;
             string newChar = textBox_newChar.Text;
-            ThreadStart childref = new ThreadStart(() => {
+            
+            ThreadStart childref = new ThreadStart(() =>
+            {
                 IExcelReplace data = new IExcelReplace
                 {
                     url = path,
@@ -101,11 +105,10 @@ namespace ExcelFind
                 {
                     AddBoxMsg($"没有找到和‘{oldChar}’类似的内容");
                 }
-                
-                Stop();
+                StopProgress();
+
             });
-            Thread childThread = new Thread(childref);
-            childThread.Start();
+            StartThread(childref);
         }
 
         public string Progress;
@@ -113,6 +116,7 @@ namespace ExcelFind
         public void SetProgress(string msg)
         {
             Progress = msg;
+            updateProgess();
         }
 
         private void StartProgress()
@@ -127,16 +131,36 @@ namespace ExcelFind
                 Enabled = true
             };
             //绑定Elapsed事件
-            timer.Elapsed += new System.Timers.ElapsedEventHandler((object sender, System.Timers.ElapsedEventArgs e) => {
-                lab_progress.Text = Progress;
-            });
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(updateProgess);
         }
 
-        private void Stop()
+        private void updateProgess(object sender = null, System.Timers.ElapsedEventArgs e = null)
         {
-            timer.Stop();
-            timer = null;
-            lab_progress.Text = "";
+            lab_progress.Text = Progress;
+        }
+
+        private void StopProgress()
+        {
+            if (timer != null)
+            {
+                timer.Stop();
+                timer = null;
+            }
+            SetProgress("当前进度：查询完成");
+        }
+
+        private void StartThread(ThreadStart childref)
+        {
+            if (curThread == null || curThread.ThreadState == ThreadState.Stopped)
+            {
+                curThread = new Thread(childref);
+                curThread.IsBackground = true;
+                curThread.Start();
+            }
+            else
+            {
+                MessageBox.Show("正在查询，请稍后...", "警告框");
+            }
         }
     }
 
