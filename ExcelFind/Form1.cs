@@ -116,7 +116,7 @@ namespace ExcelFind
         public void SetProgress(string msg)
         {
             Progress = msg;
-            updateProgess();
+            UpdateProgess();
         }
 
         private void StartProgress()
@@ -131,10 +131,10 @@ namespace ExcelFind
                 Enabled = true
             };
             //绑定Elapsed事件
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(updateProgess);
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(UpdateProgess);
         }
 
-        private void updateProgess(object sender = null, System.Timers.ElapsedEventArgs e = null)
+        private void UpdateProgess(object sender = null, System.Timers.ElapsedEventArgs e = null)
         {
             lab_progress.Text = Progress;
         }
@@ -153,13 +153,15 @@ namespace ExcelFind
         {
             if (curThread == null || curThread.ThreadState == ThreadState.Stopped)
             {
-                curThread = new Thread(childref);
-                curThread.IsBackground = true;
+                curThread = new Thread(childref)
+                {
+                    IsBackground = true
+                };
                 curThread.Start();
             }
             else
             {
-                MessageBox.Show("正在查询，请稍后...", "警告框");
+                MessageBox.Show("正在查询，请稍后...", "提示");
             }
         }
     }

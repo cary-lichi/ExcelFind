@@ -43,6 +43,7 @@
             this.textBox_newChar = new System.Windows.Forms.TextBox();
             this.lab_progress = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lab_url
@@ -181,10 +182,22 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "日志如下：";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label6.Location = new System.Drawing.Point(12, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "当前版本：1.1.1";
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(878, 589);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lab_progress);
             this.Controls.Add(this.textBox_newChar);
@@ -228,6 +241,7 @@
         private System.Windows.Forms.Label lab_pro;
         private System.Windows.Forms.Label lab_progress;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 
