@@ -2,9 +2,20 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>aid1y-kxz2j-001.ico</ApplicationIcon>
+    <StartupObject>ExcelFind.Program</StartupObject>
+    <AssemblyVersion>1.1.1.2</AssemblyVersion>
+    <FileVersion>1.1.1.2</FileVersion>
+    <Version>1.1.2</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIcon></PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="aid1y-kxz2j-001.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="NPOI" Version="2.4.1" />
