@@ -769,7 +769,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ExcelFind, Version=1.1.1.4, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ExcelFind, Version=1.1.1.2, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_2E4A1893FF734FF0A05165BDE223C368"
@@ -1646,7 +1646,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ExcelFind"
         "ProductCode" = "8:{9EE881F2-7D57-4A83-8F20-AB2E876595A5}"
-        "PackageCode" = "8:{84F7E1F4-8FBF-4B15-8911-E0F50DB60F9F}"
+        "PackageCode" = "8:{32298412-DD98-415F-93A8-4FF2426CB555}"
         "UpgradeCode" = "8:{22F3A238-0DD1-4DD2-9DA9-1625C1527D76}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

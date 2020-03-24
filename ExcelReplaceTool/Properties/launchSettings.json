@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExcelReplaceTool": {
+      "commandName": "Project",
+      "commandLineArgs": "E:\\plan\\config$$D:\\C#\\ExcelFind\\Tool\\config$$充值,充钱;兑换,更换"
+    }
+  }
+}

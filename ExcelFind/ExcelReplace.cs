@@ -1,10 +1,7 @@
 ﻿using NPOI.SS.UserModel;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Text;
-using System.Windows.Forms;
 
 namespace ExcelFind
 {
@@ -16,12 +13,18 @@ namespace ExcelFind
 
     struct IExcelReplace
     {
-        public string url;
+        public string oldUrl;
+        public string newUrl;
         public string ext;
+        public Action<string> action;
+        public IReplaceText[] replaceList;
+        public List<string> infoList;
+    }
+
+    struct IReplaceText
+    {
         public string oldChar;
         public string newChar;
-        public Form1 view;
-        public List<string> infoList ;
     }
 
     class ExcelReplace
@@ -29,24 +32,22 @@ namespace ExcelFind
         public static void Replace(IExcelReplace data)
         {
 
-            List<string> paths = FileUtil.GetFileName(data.url, data.ext);
+            List<string> paths = FileUtil.GetAllFileName(data.oldUrl, data.ext);
             for (int i = 0; i < paths.Count; i++)
             {
                 string path = paths[i];
+                data.action?.Invoke($"当前进度：{path}  ({i+1}/{paths.Count})");
                 ExportExcel(path, data);
-                data.view.SetProgress($"当前进度：{path}  ({i}/{paths.Count})");
             }
         }
 
         private static void ExportExcel(string file, IExcelReplace data)
         {
-
             if (!File.Exists(file))
             {
                 return;
             }
             bool change = false;
-
 
             try
             {
@@ -67,38 +68,68 @@ namespace ExcelFind
                             for (int k = 0; k < row.LastCellNum; k++)
                             {
                                 ICell cell = row.GetCell(k);
-                                string text = "";
-                                if (cell != null)
+                                if (ReplaceCellText(cell, data))
                                 {
-                                    text = cell.ToString();
-                                    if (text.Contains(data.oldChar))
-                                    {
-                                        text = text.Replace(data.oldChar, data.newChar);
-                                        cell.SetCellValue(text);
-                                        change = true;
-                                    }
+                                    change = true;
                                 }
-
                             }
                         }
                     }
                 }
 
                 stream.Close();
+
                 if (change)
                 {
-                    using var fs = new FileStream(file, FileMode.Create, FileAccess.Write);
+                    FileUtil.CheckPath(data.newUrl);
+                    string newPath = data.newUrl + @"\" + Path.GetFileName(file);
+                    using var fs = new FileStream(newPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                     data.infoList.Add(file);
                     workbook.Write(fs);
                     fs.Close();
                 }
                 workbook.Close();
-                
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        private static bool ReplaceCellText(ICell cell, IExcelReplace data)
+        {
+            if (cell == null)
+            {
+                return false;
+            }
+
+            bool change = false;
+            try
+            {
+                if (cell.CellType == CellType.String)
+                {
+                    string text = cell.ToString();
+                    if (data.replaceList.Length > 0)
+                    {
+                        for (int i = 0; i < data.replaceList.Length; i++)
+                        {
+                            IReplaceText rep = data.replaceList[i];
+                            if (text.Contains(rep.oldChar))
+                            {
+                                text = text.Replace(rep.oldChar, rep.newChar);
+                                cell.SetCellValue(text);
+                                change = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            return change;
         }
     }
 }

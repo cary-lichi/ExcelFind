@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\ExcelFind\ExcelReplace.cs" Link="ExcelReplace.cs" />
+    <Compile Include="..\ExcelFind\ExcelUtil.cs" Link="ExcelUtil.cs" />
+    <Compile Include="..\ExcelFind\FileUtil.cs" Link="FileUtil.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NPOI" Version="2.4.1" />
+  </ItemGroup>
+
+</Project>

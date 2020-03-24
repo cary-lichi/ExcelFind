@@ -238,7 +238,6 @@
         private System.Windows.Forms.Button btn_replace;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox_newChar;
-        private System.Windows.Forms.Label lab_pro;
         private System.Windows.Forms.Label lab_progress;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

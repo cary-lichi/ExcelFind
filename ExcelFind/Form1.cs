@@ -1,14 +1,7 @@
 ﻿using NPOI.SS.UserModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Timers;
 using System.Threading;
 
 namespace ExcelFind
@@ -47,7 +40,7 @@ namespace ExcelFind
             ThreadStart childref = new ThreadStart(() =>
             {
                 ExcelFindData data = new ExcelFindData();
-                ExcelFind.Find(path, type, target, data, this);
+                ExcelFind.Find(path, type, target, data, SetProgress);
                 if (data.infoList.Count > 0)
                 {
                     foreach (var info in data.infoList)
@@ -78,17 +71,24 @@ namespace ExcelFind
             string oldChar = textBox_target.Text;
             string type = textBox_type.Text;
             string newChar = textBox_newChar.Text;
-            
+
             ThreadStart childref = new ThreadStart(() =>
             {
                 IExcelReplace data = new IExcelReplace
                 {
-                    url = path,
+                    oldUrl = path,
+                    newUrl = path,
                     ext = type,
-                    oldChar = oldChar,
-                    newChar = newChar,
+                    replaceList = new IReplaceText[1]
+                    {
+                        new IReplaceText
+                        {
+                            oldChar = oldChar,
+                            newChar = newChar
+                        }
+                    },
                     infoList = new List<string>(),
-                    view = this
+                    action = SetProgress
                 };
                 ExcelReplace.Replace(data);
                 if (data.infoList.Count > 0)

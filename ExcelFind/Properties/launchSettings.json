@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExcelFind": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

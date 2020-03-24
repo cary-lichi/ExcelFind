@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace ExcelFind
 {
@@ -20,7 +18,7 @@ namespace ExcelFind
         /// <param name="ext">文件后缀名, 空表示不过滤文件后缀名, 多个可用 "|" 分隔</param>
         /// <param name="subfolder">是否获取子文件夹</param>
         /// <param name="ignoreFile">用于自定义来判断是否需要忽略指定的文件或文件夹</param>
-        public static List<string> GetFileName(string fileDir, string ext = "", bool subfolder = true, bool ignoreFile = false)
+        public static List<string> GetAllFileName(string fileDir, string ext = "", bool subfolder = true, bool ignoreFile = false)
         {
             List<string> path = new List<string>();
             string[] extList = ext.Split("|");
@@ -35,9 +33,17 @@ namespace ExcelFind
                     }
                 }
             }
-           
+
             return path;
         }
 
+        public static void CheckPath(string path)
+        {
+            if (Directory.Exists(path)==false)//如果不存在就创建file文件夹
+            {
+                Directory.CreateDirectory(path);
+            }
+
+        }
     }
 }

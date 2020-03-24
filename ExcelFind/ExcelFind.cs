@@ -1,9 +1,7 @@
 ﻿using NPOI.SS.UserModel;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Text;
 
 namespace ExcelFind
 {
@@ -26,15 +24,15 @@ namespace ExcelFind
 
     class ExcelFind
     {
-        public static void Find(string url, string ext, string content, ExcelFindData res, Form1 view )
+        public static void Find(string url, string ext, string content, ExcelFindData res, Action<string> action )
         {
 
-            List<string> paths = FileUtil.GetFileName(url, ext);
+            List<string> paths = FileUtil.GetAllFileName(url, ext);
             for (int i=0;i< paths.Count;i++)
             {
                 string path = paths[i];
                 ExportExcel(path, content, res);
-                view.SetProgress($"当前进度：{path}  ({i}/{paths.Count}) ");
+                action?.Invoke($"当前进度：{path}  ({i}/{paths.Count}) ");
             }
         }
 

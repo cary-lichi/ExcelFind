@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelFind", "ExcelFind\ExcelFind.csproj", "{FBBE705B-CEF0-4C88-9503-AD079FCCC69D}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{72D71188-1C08-45CB-BDFA-4B028D54A1B7}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ExcelFindSetup", "Setup\Setup.vdproj", "{72D71188-1C08-45CB-BDFA-4B028D54A1B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReplaceTool", "ExcelReplaceTool\ExcelReplaceTool.csproj", "{3578AF00-38FC-4BD2-A47F-300F323278C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		{FBBE705B-CEF0-4C88-9503-AD079FCCC69D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72D71188-1C08-45CB-BDFA-4B028D54A1B7}.Debug|Any CPU.ActiveCfg = Debug
 		{72D71188-1C08-45CB-BDFA-4B028D54A1B7}.Release|Any CPU.ActiveCfg = Release
+		{3578AF00-38FC-4BD2-A47F-300F323278C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3578AF00-38FC-4BD2-A47F-300F323278C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3578AF00-38FC-4BD2-A47F-300F323278C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3578AF00-38FC-4BD2-A47F-300F323278C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
